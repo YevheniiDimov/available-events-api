@@ -1,0 +1,25 @@
+{
+  "name": "available-events-api",
+  "version": "1.0.0",
+  "description": "API for fetching available events from NFTickets AWS Bucket",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/express": "^4.17.19"
+  },
+  "scripts": {
+    "start": "npx ts-node index.ts",
+    "test": "npm test"
+  },
+  "author": "Yevhenii Dimov",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.428.0",
+    "@aws-sdk/util-base64": "^3.374.0",
+    "@metaplex-foundation/js": "^0.19.5",
+    "@metaplex-foundation/mpl-token-metadata": "^3.1.0",
+    "@smithy/util-base64": "^2.0.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
