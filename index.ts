@@ -45,11 +45,11 @@ app.get('/event', async (req: any, res: any) => {
 app.put('/event', async (req: any, res: any) => {
   const events = await fetchAvailableEventsList(awsClient);
 
-  if (req.body.publicKey in events) {
+  if (req.body.publicKey in events.eventPublicKeys) {
     res.send({message: `Event with public key ${req.body.publicKey} already exists`});
     return;
   }
-  
+
   await addAvailableEvent(awsClient, req.body.publicKey);
   res.send({message: `Event with public key ${req.body.publicKey} is successfuly added`});
 });
