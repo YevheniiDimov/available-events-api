@@ -1,5 +1,5 @@
 import { S3Client, S3ClientConfig } from "@aws-sdk/client-s3";
-import { fetchAvailableEventsList, addAvailableEvent } from "./fetch-functions";
+import { fetchAvailableEventsList, addAvailableEvent, cleanEvents } from "./fetch-functions";
 import bodyParser from "body-parser";
 import express from 'express';
 import { env } from 'process';
@@ -35,6 +35,11 @@ app.get('/', (req: any, res: any) => {
 app.get('/events', async (req: any, res: any) => {
   const events = await fetchAvailableEventsList(awsClient);
   res.send({events: events});
+});
+
+app.get('/clean', async (req: any, res: any) => {
+  await cleanEvents(awsClient);
+  res.send({message: 'Successfuly cleaned the bucket'});
 });
 
 app.get('/event', async (req: any, res: any) => {

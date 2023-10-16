@@ -30,3 +30,16 @@ export async function addAvailableEvent(awsClient: S3Client, eventPublicKey: str
     
     await awsClient.send(command);
 }
+
+export async function cleanEvents(awsClient: S3Client) {
+    const jsonObj = { eventPublicKeys: [] }
+
+    const file = Buffer.from(JSON.stringify(jsonObj), 'utf-8');
+    const command = new PutObjectCommand({
+        Bucket: 'nftickets-v5',
+        Key: "events.json",
+        Body: file,
+    });
+    
+    await awsClient.send(command);
+}
